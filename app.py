@@ -35,6 +35,7 @@ def respond():
             "toType": mid_to_type(mid),
             "text": "Your mid is " + mid
             }
+        }
         url = 'https://trialbot-api.line.me/v1/events'
         body = json.dumps(request_content)
         header = {
