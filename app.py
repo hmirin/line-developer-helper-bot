@@ -20,7 +20,7 @@ def respond():
         "to": [msg['content']['from']],
         "toChannel": "1383378250", # Fixed  value
         "eventType": "138311608800106203", # Fixed value
-        "content": "Your mid is " + to
+        "content": "Your mid is " + msg['content']['from']
         }
         url = 'https://trialbot-api.line.me/v1/events'
         body = json.dumps(request_content)
