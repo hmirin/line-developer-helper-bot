@@ -12,17 +12,29 @@ from config import env_config as config
 
 app = Flask(__name__)
 
+def mid_to_type(mid):
+    if "u" == mid[0]:
+        return 1
+    elif "r" == mid[0]:
+        return 2
+    elif "c" == mid[0]:
+        return 3
+
 @app.route('/', methods=['POST'])
 def respond():
     # preprocess request
     request_json = request.json
     for msg in request_json["result"]:
+        mid = msg['content']['from']
         request_content = {
-        "to": [msg['content']['from']],
+        "to": [mid],
         "toChannel": "1383378250", # Fixed  value
         "eventType": "138311608800106203", # Fixed value
-        "content": "Your mid is " + msg['content']['from']
-        }
+        "content": {
+            "contentType": 1,
+            "toType": mid_to_type(mid),
+            "text": "Your mid is " + mid
+            }
         url = 'https://trialbot-api.line.me/v1/events'
         body = json.dumps(request_content)
         header = {
