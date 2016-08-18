@@ -33,7 +33,7 @@ def respond():
         "content": {
             "contentType": 1,
             "toType": mid_to_type(mid),
-            "text": "Your mid is " + mid
+            "text": "Your mid is " + mid + "\nYour request was:\n" + json.dumps(request_json)
             }
         }
         url = 'https://trialbot-api.line.me/v1/events'
