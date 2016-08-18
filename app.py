@@ -46,6 +46,7 @@ def respond():
         }
         req = urllib2.Request(url, body ,header)
         res = urllib2.urlopen(req)
+        return json.dumps({'success':True}), 200, {'ContentType':'application/json'} 
 
 if __name__ == '__main__':
     host = app.config.get('HOST', '0.0.0.0')
